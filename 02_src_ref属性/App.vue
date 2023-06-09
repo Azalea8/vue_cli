@@ -1,16 +1,18 @@
 <template>
   <div>
-    <Student name="李四" :age="18" sex="男"></Student>
+    <h1 v-text="msg" ref="title"></h1>
+    <button @click="showDOM" ref="button">点我输出上方的DOM元素</button>
+    <School ref="school"></School>
   </div>
 </template>
 
 <script>
-import Student from "@/components/Student.vue";
+import School from "@/components/Student.vue";
 
 export default {
   name: 'App',
   components: {
-    Student,
+    School,
   },
   data() {
     return{
