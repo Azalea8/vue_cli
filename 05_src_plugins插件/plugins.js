@@ -1,7 +1,7 @@
 const ojb = {
-    install(Vue) {
+    install(Vue, x, y, z) {
         //全局配置
-
+        console.log(x,y,z)
         Vue.mixin({
             data() {
                 return{
