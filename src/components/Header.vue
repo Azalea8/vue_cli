@@ -8,7 +8,7 @@
 import {nanoid} from "nanoid";
 
 export default {
-  name: 'Header',
+  name: 'Header-',
   methods: {
     add(e) {
       let title = e.target.value
