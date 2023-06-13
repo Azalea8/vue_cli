@@ -28,12 +28,12 @@ export default {
     }
   },
   methods: {
-    addTodoObj(todoObj) {
+    addTodoObj(todoObj){
       this.todos.unshift(todoObj)
     },
     checkTodoObj(id) {
       this.todos.forEach((todo) => {
-        if (todo.id === id) todo.done = !todo.done
+        if(todo.id === id) todo.done = !todo.done
       })
     },
     deleteTodoObj(id) {
@@ -51,17 +51,6 @@ export default {
         return !todo.done
       })
     }
-  },
-  watch: {
-    todos: {
-      deep: true,
-      handler(newValue) {
-        localStorage.setItem('todos', JSON.stringify(newValue))
-      }
-    }
-  },
-  created() {
-    this.todos = JSON.parse(localStorage.getItem('todos')) || [];
   }
 }
 </script>
