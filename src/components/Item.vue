@@ -27,7 +27,7 @@ export default {
       }
     }
   },
-  props: ['todo', 'checkTodoObj', 'deleteTodoObj']
+  props: ['todo', 'checkTodoObj', 'deleteTodoObj',]
 }
 </script>
 

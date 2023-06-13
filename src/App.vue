@@ -4,7 +4,7 @@
       <div class="todo-wrap">
         <Header :addTodoObj="addTodoObj"/>
         <List :todos="todos" :checkTodoObj="checkTodoObj" :deleteTodoObj="deleteTodoObj"/>
-        <Footer :todos="todos" :checkAllTodoObj="checkAllTodoObj"/>
+        <Footer :todos="todos" :checkAllTodoObj="checkAllTodoObj" :clearAllTodoObj="clearAllTodoObj"/>
       </div>
     </div>
   </div>
@@ -44,6 +44,11 @@ export default {
     checkAllTodoObj(done) {
       this.todos.forEach((todo) => {
         todo.done = done
+      })
+    },
+    clearAllTodoObj() {
+      this.todos = this.todos.filter((todo) => {
+        return !todo.done
       })
     }
   }

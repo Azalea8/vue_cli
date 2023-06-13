@@ -15,7 +15,7 @@ export default {
   components: {
     Item,
   },
-  props:['todos', 'checkTodoObj', 'deleteTodoObj']
+  props:['todos', 'checkTodoObj', 'deleteTodoObj',]
 }
 </script>
 
