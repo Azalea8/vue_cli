@@ -1,51 +1,113 @@
 <template>
-  <div class="app">
-    <h1>{{msg}}<span v-show="studentName">{{studentName}}</span></h1>
-    <!--- 自定义事件 -->
-    <Student @test="demo"></Student>
-    <Student ref="Student" @click.native="show"></Student>  <!-- 组件绑定原生DOM事件需要加修饰符 -->
-    <br/>
-    <!--  通过父组件向子组件props传递函数实现：子组件向父组件传递数据  -->
-    <School :getSchoolName="getSchoolName"></School>
+  <div>
+    <div class="todo-container">
+      <div class="todo-wrap">
+        <Header @addTodoObj="addTodoObj"/>
+        <List :todos="todos" :checkTodoObj="checkTodoObj" :deleteTodoObj="deleteTodoObj"/>
+        <Footer :todos="todos" @checkAllTodoObj="checkAllTodoObj" @clearAllTodoObj="clearAllTodoObj"/>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import Student from "@/components/Student.vue";
-import School from "./components/School.vue";
+import Header from "@/components/Header.vue";
+import List from "@/components/List.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
   name: 'App',
   components: {
-    School,
-    Student,
+    Header,
+    List,
+    Footer,
   },
   data() {
-    return{
-      msg: '你好啊！',
-      studentName: '',
+    return {
+      todos: [],
     }
   },
   methods: {
-    getSchoolName(name) {
-      console.log(name)
+    addTodoObj(todoObj) {
+      this.todos.unshift(todoObj)
     },
-    demo(name) {
-      this.studentName = name
+    checkTodoObj(id) {
+      this.todos.forEach((todo) => {
+        if (todo.id === id) todo.done = !todo.done
+      })
     },
-    show() {
-      alert('123')
+    deleteTodoObj(id) {
+      this.todos = this.todos.filter((todo) => {
+        return todo.id !== id
+      })
+    },
+    checkAllTodoObj(done) {
+      this.todos.forEach((todo) => {
+        todo.done = done
+      })
+    },
+    clearAllTodoObj() {
+      this.todos = this.todos.filter((todo) => {
+        return !todo.done
+      })
     }
   },
-  mounted() {
-    this.$refs.Student.$on('test', this.demo) // 通过ref属性获取组件实例对象，在其上面添加事件
+  watch: {
+    todos: {
+      deep: true,
+      handler(newValue) {
+        localStorage.setItem('todos', JSON.stringify(newValue))
+      }
+    }
+  },
+  created() {
+    this.todos = JSON.parse(localStorage.getItem('todos')) || [];
   }
 }
 </script>
 
 <style>
-  .app{
-    background: gray;
-    padding: 5px;
-  }
+/*base*/
+body {
+  background: #fff;
+}
+
+.btn {
+  display: inline-block;
+  padding: 4px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: #da4f49;
+  border: 1px solid #bd362f;
+}
+
+.btn-danger:hover {
+  color: #fff;
+  background-color: #bd362f;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.todo-container {
+  width: 600px;
+  margin: 0 auto;
+}
+
+.todo-container .todo-wrap {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
 </style>
