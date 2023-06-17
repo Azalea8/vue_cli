@@ -17,6 +17,14 @@ export default {
       address: '四川省绵阳市',
     }
   },
+  mounted() {
+    this.$bus.$on('hello',(data) =>{
+      console.log(data)
+    })
+  },
+  beforeDestroy() {
+    this.$bus.$off('hello')
+  }
 }
 </script>
 

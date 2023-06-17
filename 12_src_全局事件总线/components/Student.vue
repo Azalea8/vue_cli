@@ -3,6 +3,7 @@
   <h1>{{msg}}</h1>
   <h2>学生姓名: {{name}}</h2>
   <h2>学生年龄: {{age}}</h2>
+  <button @click="sentStudentName">把学生名给school组件</button>
 </div>
 </template>
 
@@ -17,6 +18,11 @@ export default {
       age: 18,
     }
   },
+  methods: {
+    sentStudentName() {
+      this.$bus.$emit('hello', this.name)
+    }
+  }
 }
 </script>
 
