@@ -8,7 +8,8 @@
       <!-- v-model数据的双向绑定，checkbox使用v-model来双向绑定其是否被勾选,也可以实现效果但不推荐(因为其实修改了props中的数据) -->
       <!-- 这里修改了从List修改过来的props,这里的不允许改是浅层次，深层次的更改vue是检测不到的，此特性可以做些文章，但不建议 -->
       <span v-show="!todo.isEdit">{{ todo.title }}</span>
-      <input v-show="todo.isEdit" type="text" :value="todo.title" @blur="handleBlur($event,todo)"/>
+      <input v-show="todo.isEdit" type="text" :value="todo.title" @blur="handleBlur($event,todo)"
+             ref="inputTitle"/>
     </label>
     <button class="btn btn-danger" @click="handleDelete(todo.id)">删除</button>
     <button v-show="!todo.isEdit" class="btn btn-edit" @click="handleEdit(todo)" >编辑</button>
@@ -36,6 +37,12 @@ export default {
       }else{
         this.$set(todo, 'isEdit', true)
       }
+      /*setTimeout(()=>{
+        this.$refs.inputTitle.focus()
+      },200)*/
+      this.$nextTick(function (){
+        this.$refs.inputTitle.focus()
+      })
     },
     handleBlur(e, todo) {
       todo.isEdit = false
