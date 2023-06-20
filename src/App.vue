@@ -1,23 +1,20 @@
 <template>
   <div>
-    <Test></Test>
-    <Test2></Test2>
-    <Test3></Test3>
+    <Search></Search>
+    <List></List>
   </div>
 </template>
 
 <script>
-import Test from "@/components/Test.vue";
-import Test2 from "@/components/Test2.vue";
-import Test3 from "@/components/Test3.vue";
-
+import Search from "@/components/Search.vue";
+import List from "@/components/List.vue";
 export default {
   name: 'App',
-  components: {
-    Test,
-    Test2,
-    Test3,
-  },
+  components: {List, Search},
+  template:{
+    Search,
+    List,
+  }
 }
 </script>
 
