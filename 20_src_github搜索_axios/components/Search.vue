@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'Search-',
   data() {
@@ -24,7 +25,7 @@ export default {
         errMsg: '',
         users: [],
       })
-      this.$http.get(`https://api.github.com/search/users?q=${this.keyWord}`).then(
+      axios.get(`https://api.github.com/search/users?q=${this.keyWord}`).then(
           response => {
             this.$bus.$emit('updateDataList', {
               isLoading: false,
