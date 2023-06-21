@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <!--展示用户列表-->
-    <div v-show="users.length" class="card" v-for="user in users" :key="user.login">
+    <div v-show="info.users.length" class="card" v-for="user in info.users" :key="user.login">
       <a :href="user.html_url" target="_blank">
         <img :src="user.avatar_url" style='width: 100px'/>
       </a>
@@ -20,14 +20,18 @@
 export default {
   name: 'List-',
   data() {
-    return{
-      users: [],
+    return {
+      info: {
+        isFirst: true,
+        isLoading: false,
+        errMsg: '',
+        users: [],
+      }
     }
   },
   mounted() {
-    this.$bus.$on('getUsers', (users)=>{
-      // console.log('我是List组件收到了数据', users)
-      this.users = users
+    this.$bus.$on('updateDataList', (dateObj) => {
+      this.info = {...this.info, ...dateObj} // 将后一个合并到前一个
     })
   }
 }
