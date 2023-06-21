@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <Search></Search>
-    <List></List>
+  <div class="container">
+    <Search/>
+    <List/>
   </div>
 </template>
 
