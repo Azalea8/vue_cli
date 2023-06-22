@@ -9,7 +9,7 @@
     <button @click="increment">+</button>
     <button @click="decrement">-</button>
     <button @click="incrementOdd">当前求和为奇数再加</button>
-    <button @click="incrementWait">等一等在加</button>
+    <button @click="incrementWait">等一等再加</button>
   </div>
 </template>
 
@@ -23,18 +23,16 @@ export default {
   },
   methods: {
     increment() {
-      this.$store.dispatch('increment', this.num)
+      this.$store.commit('INCREMENT', this.num)
     },
     decrement() {
-
+      this.$store.commit('DECREMENT', this.num)
     },
     incrementOdd() {
-
+      this.$store.dispatch('incrementOdd', this.num)
     },
     incrementWait() {
-      setTimeout(()=>{
-
-      },500)
+      this.$store.dispatch('incrementWait', this.num)
     },
   }
 }
