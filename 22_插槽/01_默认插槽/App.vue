@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import Category from "@/components/Category.vue";
+import Category from "@/components/Count.vue";
 
 export default {
   name: 'App',

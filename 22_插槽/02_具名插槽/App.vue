@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import Category from "@/components/Category";
+import Category from "@/components/Count.vue";
 export default {
   name: "App",
   components:{
