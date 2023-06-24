@@ -4,12 +4,11 @@
       <li v-for="m in messageList" :key="m.id">
 <!--        <router-link :to="`/home/message/detail?id=${m.id}&title=${m.title}`">{{ m.title }}</router-link>-->
         <router-link :to="{
-          /*path: '/home/message/detail',*/
-          name: 'detail',
+          path: '/home/message/detail',
           query: {
             id: m.id,
             title: m.title
-          } // 如果用params传参，只能能用命名路由name
+          }
         }">
           {{ m.title }}
         </router-link>
@@ -31,9 +30,6 @@ export default {
         {id: '003', title: '消息003'},
       ]
     }
-  },
-  mounted() {
-    console.log(this.$route)
   }
 }
 </script>
