@@ -8,16 +8,16 @@ import Message from "@/pages/Message.vue";
 import Detail from "@/pages/Detail.vue";
 
 //创建并默认暴露一个路由器
-export default new VueRouter({
-    routes:[
+const router = new VueRouter({
+    routes: [
         {
-            path:'/about',
+            path: '/about',
             component: About
         },
         {
-            path:'/home',
+            path: '/home',
             component: Home,
-            children:[
+            children: [
                 {
                     path: 'news',
                     component: News
@@ -38,7 +38,7 @@ export default new VueRouter({
 
                             //props的第三种写法,值为回调函数
                             props($route) {
-                                return{
+                                return {
                                     id: $route.query.id,
                                     title: $route.query.title,
                                 }
@@ -50,3 +50,10 @@ export default new VueRouter({
         },
     ]
 });
+
+router.beforeEach((to, from, next) => {
+    console.log(to, from)
+    next()
+})
+
+export default router
