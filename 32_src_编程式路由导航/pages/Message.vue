@@ -56,9 +56,6 @@ export default {
   },
   mounted() {
     console.log(this.$route)
-  },
-  beforeDestroy() {
-    console.log('Message-组件即将销毁')
   }
 }
 </script>
